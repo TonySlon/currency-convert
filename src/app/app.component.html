@@ -3,25 +3,21 @@
 
   <div class="field">
     <div class="card">
-      <select [disabled]="loading" #fromInput [(ngModel)]="from" (change)="onConvert(false)">
-        <option *ngFor="let code of currencyCodes" [value]="code.name">
-          {{ code.name }} - {{ currencies[code.id]?.name }}
-        </option>
-      </select>
-      <input [disabled]="loading" type="number" min="1" [(ngModel)]="amount" (input)="onConvert(false)"
-        placeholder="Amount" />
+      <app-dropdown [loading]="loading" [value]="from" (valueChange)="from = $event; onConvert()"
+        [currencies]="currencies" [currencyCodes]="currencyCodes">
+      </app-dropdown>
+
+      <app-input [loading]="loading" [type]="'number'" [min]="1" [placeholder]="'Amount'" [value]="amount"
+        (valueChange)="amount = $event; onConvert()"></app-input>
     </div>
 
     <p>⬇️</p>
 
     <div class="field">
       <div class="card">
-        <select [disabled]="loading" #toInput [(ngModel)]="to" (change)="onConvert(false)">
-          <option *ngFor="let code of currencyCodes" [value]="code.name">
-            <p>{{ code.name }} - </p>
-            <p>{{ currencies[code.id]?.name }}</p>
-          </option>
-        </select>
+        <app-dropdown [loading]="loading" [value]="to" (valueChange)="to = $event; onConvert()"
+          [currencies]="currencies" [currencyCodes]="currencyCodes">
+        </app-dropdown>
         <div class="result">
           <p class="spinner" *ngIf="loading"></p>
           <p><strong *ngIf="!loading && convertedValue !== null"> {{ convertedValue | number:'1.2-2' }} {{ to }}

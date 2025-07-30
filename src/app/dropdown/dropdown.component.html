@@ -1,0 +1,5 @@
+ <select [disabled]="loading" [value]="value" (change)="onDropDownChange($event)">
+        <option *ngFor="let code of currencyCodes" [value]="code.name">
+          {{ code.name }} - {{ currencies[code.id]?.name }}
+        </option>
+      </select>
