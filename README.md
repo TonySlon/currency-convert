@@ -1,6 +1,8 @@
 run: npm install 
 run: ng serve
 
+# Usually I am using libraries like PrimeNG, PrimeIcons or Angular material
+
 # CurrencyConvert
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.20.
